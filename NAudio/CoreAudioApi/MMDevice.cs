@@ -31,7 +31,7 @@ namespace NAudio.CoreAudioApi
     /// <summary>
     /// MM Device
     /// </summary>
-    public class MMDevice : IDisposable
+    public class MMDevice : IDisposable, IEquatable<MMDevice>
     {
         #region Variables
         private readonly IMMDevice deviceInterface;
@@ -289,7 +289,16 @@ namespace NAudio.CoreAudioApi
             this.audioSessionManager?.Dispose();
             GC.SuppressFinalize(this);
         }
-        
+        /// <summary>
+        /// equal
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public bool Equals(MMDevice other)
+        {
+            return this.ID.Equals(other.ID,StringComparison.InvariantCultureIgnoreCase);
+        }
+
         /// <summary>
         /// Finalizer
         /// </summary>
