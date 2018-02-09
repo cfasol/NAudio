@@ -181,9 +181,9 @@ namespace NAudio.CoreAudioApi
             }
         }
 
-       /// <summary>
-       /// Friendly name of device
-       /// </summary>
+        /// <summary>
+        /// Friendly name of device
+        /// </summary>
         public string DeviceFriendlyName
         {
             get
@@ -296,7 +296,10 @@ namespace NAudio.CoreAudioApi
         /// <returns></returns>
         public bool Equals(MMDevice other)
         {
-            return this.ID.Equals(other.ID,StringComparison.InvariantCultureIgnoreCase);
+            if (other == null)
+                return false;
+
+            return this.ID.Equals(other.ID, StringComparison.InvariantCultureIgnoreCase);
         }
 
         /// <summary>
